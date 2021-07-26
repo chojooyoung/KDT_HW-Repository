@@ -26,22 +26,23 @@ const msg = item ?
 alert(msg);
 // 아래에 getItemByAmount 함수를 작성하세요.
 function getItemByAmount(data,amount){
-        //내림차순정렬
+        //가격기준으로, 내림차순정렬
     result = data.sort(function (a, b) {
         return b.price - a.price;
     });
-    let tem={};
-    const len=result.length;
+    let tem={};//리턴할값 
+    const len=result.length;//크기
     for(let i=0; i<len; i++){
-        if(i===len-1){
+        if(i===len-1){//배열을 다 돌았다면, null값 리턴
             tem=null;
         }
-        else if(amount>result[0].price){
-            tem=result[0];
+        else if(amount>result[0].price){ //제일큰값(배열의 첫값)보다 크다면
+            tem=result[0]; // 첫상품 리턴
             break;
         }
-        else if(amount<=result[i].price && amount>=result[i+1].price){
-            tem=result[i+1];
+	//배열을 검사하면서  현재값<= 입력받은가격<=다음가격이라면
+        else if(amount<=result[i].price && amount>=result[i+1].price){ 
+            tem=result[i+1];//그 다음(현재보다 낮은) 상품선택
             break;
         };
 
